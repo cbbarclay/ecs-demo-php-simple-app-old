@@ -17,8 +17,15 @@
             <div class="hero-unit">
                 <h1>Simple PHP App</h1>
                 <h2>Congratulations</h2>
-                <p>Your PHP application is now running on the host &ldquo;<?php echo gethostname(); ?>&rdquo; in your own dedicated environment in the AWS&nbsp;Cloud.</p>
-                <p>This host is running PHP version <?php echo phpversion(); ?>.</p>
+                <p>Your PHP application is now running on a container in Amazon ECS.</p>
+                <p>The container is running PHP version <?php echo phpversion(); ?>.</p>
+                <p>The current date:</p>
+                <?php
+                        $myfile = fopen("/var/www/chris/date", "r") or die("Unable to open file!");
+                        echo fread($myfile,filesize("/var/www/chris/date"));
+                        fclose($myfile);
+                ?>
+
             </div>
         </div>
 
